@@ -19,16 +19,25 @@ func init() {
 func (a *CreateColumn) Execute(c *Context) error {
 	_, err := c.Tx.Exec(
 		fmt.Sprintf(
-			"ALTER TABLE \"%s\".\"%s\" ADD COLUMN \"%s\" %s\"%s\";",
+			"ALTER TABLE \"%s\".\"%s\" ADD COLUMN \"%s\" %s\"%s\"%s;",
 			a.SchemaName,
 			a.TableName,
 			a.Column.Name,
 			a.Column.GetTypeSchemaStr(a.SchemaName),
 			a.Column.Type,
+			a.notNullStatement(),
 		),
 	)
 
 	return err
+}
+
+func (a *CreateColumn) notNullStatement() string {
+	if a.Column.NotNull {
+		return " NOT NULL"
+	}
+
+	return ""
 }
 
 func (a *CreateColumn) Filter(targetExpression string) bool {

@@ -12,6 +12,7 @@ type Attribute struct {
 	TypeName   string `json:"type_name"`
 	TypeSchema string `json:"type_schema"`
 	TypeOid    string `json:"type_oid"`
+	NotNull    bool   `json:"not_null"`
 	Type       *Type
 }
 
@@ -31,6 +32,7 @@ func (post *Attribute) Diff(other ddldiff.Diffable, context ddldiff.Context) []a
 				post.Name,
 				post.TypeName,
 				post.IsNativeType(),
+				post.NotNull,
 			},
 		})
 	} else {
@@ -44,11 +46,13 @@ func (post *Attribute) Diff(other ddldiff.Diffable, context ddldiff.Context) []a
 					pre.Name,
 					pre.TypeName,
 					pre.IsNativeType(),
+					post.NotNull,
 				},
 				action.Column{
 					post.Name,
 					post.TypeName,
 					post.IsNativeType(),
+					post.NotNull,
 				},
 			})
 		}
@@ -70,6 +74,7 @@ func (a *Attribute) Drop(context ddldiff.Context) []action.Action {
 				a.Name,
 				a.TypeName,
 				a.IsNativeType(),
+				a.NotNull,
 			},
 		},
 	}

@@ -1,10 +1,11 @@
 package database
 
 import (
-	"github.com/pagarme/teleport/action"
-	"github.com/pagarme/teleport/batcher/ddldiff"
 	"reflect"
 	"testing"
+
+	"github.com/pagarme/teleport/action"
+	"github.com/pagarme/teleport/batcher/ddldiff"
 )
 
 func init() {
@@ -179,6 +180,7 @@ func TestIndexIsEqual(t *testing.T) {
 		"text",
 		"pg_catalog",
 		"0",
+		false,
 		false,
 		class,
 	}

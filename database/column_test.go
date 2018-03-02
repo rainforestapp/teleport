@@ -1,10 +1,11 @@
 package database
 
 import (
-	"github.com/pagarme/teleport/action"
-	"github.com/pagarme/teleport/batcher/ddldiff"
 	"reflect"
 	"testing"
+
+	"github.com/pagarme/teleport/action"
+	"github.com/pagarme/teleport/batcher/ddldiff"
 )
 
 var class *Table
@@ -52,6 +53,7 @@ func TestColumnDiff(t *testing.T) {
 				"pg_catalog",
 				"0",
 				false,
+				false,
 				class,
 			},
 			[]action.Action{
@@ -62,6 +64,7 @@ func TestColumnDiff(t *testing.T) {
 						"test_col",
 						"text",
 						true,
+						false,
 					},
 				},
 			},
@@ -75,6 +78,7 @@ func TestColumnDiff(t *testing.T) {
 				"pg_catalog",
 				"0",
 				false,
+				false,
 				class,
 			},
 			&Column{
@@ -83,6 +87,7 @@ func TestColumnDiff(t *testing.T) {
 				"int4",
 				"pg_catalog",
 				"0",
+				false,
 				false,
 				class,
 			},
@@ -94,11 +99,13 @@ func TestColumnDiff(t *testing.T) {
 						"test_col",
 						"text",
 						true,
+						false,
 					},
 					action.Column{
 						"test_col_2",
 						"int4",
 						true,
+						false,
 					},
 				},
 			},
@@ -137,6 +144,7 @@ func TestColumnChildren(t *testing.T) {
 		"pg_catalog",
 		"0",
 		false,
+		false,
 		class,
 	}
 
@@ -154,6 +162,7 @@ func TestColumnDrop(t *testing.T) {
 		"text",
 		"pg_catalog",
 		"0",
+		false,
 		false,
 		class,
 	}
@@ -195,6 +204,7 @@ func TestColumnIsEqual(t *testing.T) {
 		"pg_catalog",
 		"0",
 		false,
+		false,
 		class,
 	}
 
@@ -204,6 +214,7 @@ func TestColumnIsEqual(t *testing.T) {
 		"int4",
 		"pg_catalog",
 		"0",
+		false,
 		false,
 		class,
 	}

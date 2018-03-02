@@ -2,12 +2,13 @@ package loader
 
 import (
 	"fmt"
+	"sort"
+	"strings"
+
 	log "github.com/Sirupsen/logrus"
 	"github.com/jmoiron/sqlx"
 	"github.com/pagarme/teleport/action"
 	"github.com/pagarme/teleport/database"
-	"sort"
-	"strings"
 )
 
 func (l *Loader) getDMLBatchEvents(events []*database.Event) (map[*database.Event]*database.Batch, error) {
@@ -140,6 +141,7 @@ func (l *Loader) generateActionColumnsFromColumns(columns []*database.Column) ma
 			attr.Name,
 			attr.TypeName,
 			attr.IsNativeType(),
+			attr.NotNull,
 		}
 	}
 
@@ -183,9 +185,9 @@ func (l *Loader) resumeDMLEvent(event *database.Event, batch *database.Batch) er
 	}
 
 	tx = l.db.NewTransaction()
-  
+
 	err = l.openSelectCursor(tx, schema, class)
-	
+
 	if err != nil {
 		return err
 	}

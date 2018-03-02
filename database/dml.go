@@ -3,10 +3,11 @@ package database
 import (
 	"encoding/gob"
 	"encoding/json"
-	log "github.com/Sirupsen/logrus"
-	"github.com/pagarme/teleport/action"
 	"sort"
 	"strings"
+
+	log "github.com/Sirupsen/logrus"
+	"github.com/pagarme/teleport/action"
 )
 
 type Dml struct {
@@ -101,6 +102,7 @@ func (d *Dml) generateRows(obj *map[string]interface{}) []action.Row {
 				column.Name,
 				column.TypeName,
 				column.IsNativeType(),
+				column.NotNull,
 			},
 		})
 	}
@@ -118,6 +120,7 @@ func (d *Dml) generatePrimaryKeyRow(obj *map[string]interface{}) action.Row {
 			pkey.Name,
 			pkey.TypeName,
 			pkey.IsNativeType(),
+			pkey.NotNull,
 		},
 	}
 }

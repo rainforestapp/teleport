@@ -2,6 +2,7 @@ package database
 
 import (
 	"fmt"
+
 	log "github.com/Sirupsen/logrus"
 	"github.com/pagarme/teleport/action"
 	"github.com/pagarme/teleport/batcher/ddldiff"
@@ -93,6 +94,7 @@ func (post *Table) Diff(other ddldiff.Diffable, context ddldiff.Context) []actio
 					primaryKeyAttr.Name,
 					primaryKeyAttr.TypeName,
 					primaryKeyAttr.IsNativeType(),
+					primaryKeyAttr.NotNull,
 				},
 			})
 		} else {

@@ -13,6 +13,7 @@ type Column struct {
 	TypeSchema   string `json:"type_schema"`
 	TypeOid      string `json:"type_oid"`
 	IsPrimaryKey bool   `json:"is_primary_key"`
+	NotNull      bool   `json:"not_null"`
 	Table        *Table
 }
 
@@ -34,6 +35,7 @@ func (post *Column) Diff(other ddldiff.Diffable, context ddldiff.Context) []acti
 					post.Name,
 					post.TypeName,
 					post.IsNativeType(),
+					post.NotNull,
 				},
 			})
 		} else {
@@ -47,11 +49,13 @@ func (post *Column) Diff(other ddldiff.Diffable, context ddldiff.Context) []acti
 						pre.Name,
 						pre.TypeName,
 						pre.IsNativeType(),
+						post.NotNull,
 					},
 					action.Column{
 						post.Name,
 						post.TypeName,
 						post.IsNativeType(),
+						post.NotNull,
 					},
 				})
 			}
@@ -74,6 +78,7 @@ func (a *Column) Drop(context ddldiff.Context) []action.Action {
 				a.Name,
 				a.TypeName,
 				a.IsNativeType(),
+				a.NotNull,
 			},
 		},
 	}

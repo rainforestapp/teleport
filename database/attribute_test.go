@@ -1,10 +1,11 @@
 package database
 
 import (
-	"github.com/pagarme/teleport/action"
-	"github.com/pagarme/teleport/batcher/ddldiff"
 	"reflect"
 	"testing"
+
+	"github.com/pagarme/teleport/action"
+	"github.com/pagarme/teleport/batcher/ddldiff"
 )
 
 func init() {
@@ -47,6 +48,7 @@ func TestAttributeDiff(t *testing.T) {
 				"text",
 				"pg_catalog",
 				"0",
+				false,
 				typ,
 			},
 			[]action.Action{
@@ -57,6 +59,7 @@ func TestAttributeDiff(t *testing.T) {
 						"test_col",
 						"text",
 						true,
+						false,
 					},
 				},
 			},
@@ -69,6 +72,7 @@ func TestAttributeDiff(t *testing.T) {
 				"text",
 				"pg_catalog",
 				"0",
+				false,
 				typ,
 			},
 			&Attribute{
@@ -77,6 +81,7 @@ func TestAttributeDiff(t *testing.T) {
 				"json",
 				"pg_catalog",
 				"0",
+				false,
 				typ,
 			},
 			[]action.Action{
@@ -87,11 +92,13 @@ func TestAttributeDiff(t *testing.T) {
 						"test_col",
 						"text",
 						true,
+						false,
 					},
 					action.Column{
 						"test_col_2",
 						"json",
 						true,
+						false,
 					},
 				},
 			},
@@ -129,6 +136,7 @@ func TestAttributeChildren(t *testing.T) {
 		"json",
 		"pg_catalog",
 		"0",
+		false,
 		typ,
 	}
 
@@ -146,6 +154,7 @@ func TestAttributeDrop(t *testing.T) {
 		"json",
 		"pg_catalog",
 		"0",
+		false,
 		typ,
 	}
 
@@ -185,6 +194,7 @@ func TestAttributeIsEqual(t *testing.T) {
 		"text",
 		"pg_catalog",
 		"0",
+		false,
 		typ,
 	}
 
@@ -194,6 +204,7 @@ func TestAttributeIsEqual(t *testing.T) {
 		"int4",
 		"pg_catalog",
 		"0",
+		false,
 		typ,
 	}
 

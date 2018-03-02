@@ -1,10 +1,11 @@
 package database
 
 import (
-	"github.com/pagarme/teleport/action"
-	"github.com/pagarme/teleport/batcher/ddldiff"
 	"reflect"
 	"testing"
+
+	"github.com/pagarme/teleport/action"
+	"github.com/pagarme/teleport/batcher/ddldiff"
 )
 
 var schema *Schema
@@ -67,6 +68,7 @@ func TestTableDiff(t *testing.T) {
 						"pg_catalog",
 						"0",
 						true,
+						false,
 						nil,
 					},
 				},
@@ -81,6 +83,7 @@ func TestTableDiff(t *testing.T) {
 						"test_col",
 						"int4",
 						true,
+						false,
 					},
 				},
 			},
@@ -99,6 +102,7 @@ func TestTableDiff(t *testing.T) {
 						"pg_catalog",
 						"0",
 						false,
+						false,
 						nil,
 					},
 				},
@@ -116,6 +120,7 @@ func TestTableDiff(t *testing.T) {
 						"int4",
 						"pg_catalog",
 						"0",
+						false,
 						false,
 						nil,
 					},
@@ -166,6 +171,7 @@ func TestTableChildren(t *testing.T) {
 			"pg_catalog",
 			"0",
 			true,
+			false,
 			nil,
 		},
 	}
@@ -194,6 +200,7 @@ func TestTableChildren(t *testing.T) {
 			"pg_catalog",
 			"0",
 			true,
+			false,
 			nil,
 		},
 		&Column{
@@ -202,6 +209,7 @@ func TestTableChildren(t *testing.T) {
 			"text",
 			"pg_catalog",
 			"0",
+			false,
 			false,
 			nil,
 		},
@@ -227,6 +235,7 @@ func TestTableChildren(t *testing.T) {
 			"text",
 			"pg_catalog",
 			"0",
+			false,
 			false,
 			nil,
 		},
@@ -287,6 +296,7 @@ func TestTableDrop(t *testing.T) {
 				"pg_catalog",
 				"0",
 				false,
+				false,
 				nil,
 			},
 		},
@@ -328,6 +338,7 @@ func TestTableIsEqual(t *testing.T) {
 				"pg_catalog",
 				"0",
 				false,
+				false,
 				nil,
 			},
 		},
@@ -346,6 +357,7 @@ func TestTableIsEqual(t *testing.T) {
 				"int4",
 				"pg_catalog",
 				"0",
+				false,
 				false,
 				nil,
 			},

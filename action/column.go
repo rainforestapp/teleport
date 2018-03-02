@@ -8,6 +8,7 @@ type Column struct {
 	Name         string
 	Type         string
 	IsNativeType bool
+	NotNull      bool
 }
 
 func (c *Column) GetTypeSchemaStr(schema string) string {
