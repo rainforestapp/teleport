@@ -3,13 +3,14 @@ package batch
 import (
 	"encoding/json"
 	"fmt"
+	"io"
+	"net/http"
+
 	log "github.com/Sirupsen/logrus"
 	"github.com/gorilla/mux"
 	"github.com/pagarme/teleport/database"
 	"github.com/pagarme/teleport/server/httputils"
 	"github.com/pagarme/teleport/server/router"
-	"io"
-	"net/http"
 )
 
 type batchRouter struct {
