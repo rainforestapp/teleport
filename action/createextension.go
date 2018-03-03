@@ -18,7 +18,7 @@ func init() {
 func (a *CreateExtension) Execute(c *Context) error {
 	_, err := c.Tx.Exec(
 		fmt.Sprintf(
-			`CREATE EXTENSION IF NOT EXISTS %s WITH SCHEMA %s`,
+			`CREATE EXTENSION IF NOT EXISTS "%s" WITH SCHEMA %s`,
 			a.ExtensionName,
 			a.SchemaName,
 		),
