@@ -95,6 +95,7 @@ func (post *Table) Diff(other ddldiff.Diffable, context ddldiff.Context) []actio
 					primaryKeyAttr.TypeName,
 					primaryKeyAttr.IsNativeType(),
 					primaryKeyAttr.NotNull,
+					primaryKeyAttr.Default,
 				},
 			})
 		} else {

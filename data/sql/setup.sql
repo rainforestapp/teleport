@@ -156,7 +156,8 @@ BEGIN
 										a.attnum AS attr_num,
 										t.typname AS type_name,
                     a.attnotnull AS not_null,
-										(
+                    d.adsrc AS "default",
+                    (
 											SELECT n.nspname
 											FROM pg_namespace n
 											WHERE n.oid = t.typnamespace
@@ -170,6 +171,10 @@ BEGIN
 									FROM pg_attribute a
 									INNER JOIN pg_type t
 										ON a.atttypid = t.oid
+                  LEFT OUTER JOIN pg_attrdef d
+                    ON a.attrelid = d.adrelid
+                    AND a.attnum = d.adnum
+                    AND a.atthasdef = true
 								) attr
 								WHERE
 									attr.class_oid = class.oid AND

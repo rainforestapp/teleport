@@ -142,6 +142,7 @@ func (l *Loader) generateActionColumnsFromColumns(columns []*database.Column) ma
 			attr.TypeName,
 			attr.IsNativeType(),
 			attr.NotNull,
+			attr.Default,
 		}
 	}
 
