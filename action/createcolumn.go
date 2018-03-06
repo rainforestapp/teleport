@@ -25,7 +25,7 @@ func (a *CreateColumn) Execute(c *Context) error {
 			a.Column.Name,
 			a.Column.GetTypeSchemaStr(a.SchemaName),
 			a.Column.Type,
-			a.defaultStatement(),
+			a.Column.DefaultStatement(),
 			a.notNullStatement(),
 		),
 	)
@@ -39,14 +39,6 @@ func (a *CreateColumn) notNullStatement() string {
 	}
 
 	return ""
-}
-
-func (a *CreateColumn) defaultStatement() string {
-	if a.Column.Default == "" {
-		return ""
-	}
-
-	return " DEFAULT " + a.Column.Default
 }
 
 func (a *CreateColumn) Filter(targetExpression string) bool {

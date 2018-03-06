@@ -19,3 +19,11 @@ func (c *Column) GetTypeSchemaStr(schema string) string {
 
 	return ""
 }
+
+func (c *Column) DefaultStatement() string {
+	if c.Default == "" {
+		return ""
+	}
+
+	return " DEFAULT " + c.Default
+}
