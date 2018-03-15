@@ -3,6 +3,7 @@ package action
 import (
 	"encoding/gob"
 	"fmt"
+	"log"
 	// "strings"
 )
 
@@ -18,17 +19,17 @@ func init() {
 }
 
 func (a *CreateTable) Execute(c *Context) error {
-	_, err := c.Tx.Exec(
-		fmt.Sprintf(
-			"CREATE TABLE \"%s\".\"%s\" (\"%s\" %s\"%s\"%s PRIMARY KEY);",
-			a.SchemaName,
-			a.TableName,
-			a.PrimaryKey.Name,
-			a.PrimaryKey.GetTypeSchemaStr(a.SchemaName),
-			a.PrimaryKey.Type,
-			a.PrimaryKey.DefaultStatement(),
-		),
+	cmd := fmt.Sprintf(
+		"CREATE TABLE \"%s\".\"%s\" (\"%s\" %s\"%s\"%s PRIMARY KEY);",
+		a.SchemaName,
+		a.TableName,
+		a.PrimaryKey.Name,
+		a.PrimaryKey.GetTypeSchemaStr(a.SchemaName),
+		a.PrimaryKey.Type,
+		a.PrimaryKey.DefaultStatement(),
 	)
+	_, err := c.Tx.Exec(cmd)
+	log.Println(cmd)
 
 	return err
 }
