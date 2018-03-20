@@ -2,7 +2,6 @@ package action
 
 import (
 	"encoding/gob"
-	"fmt"
 )
 
 type CreateIndex struct {
@@ -17,33 +16,34 @@ func init() {
 }
 
 func (a *CreateIndex) Execute(c *Context) error {
-	var originalSearchPath string
+	return nil
+	// var originalSearchPath string
 
-	err := c.Tx.Get(&originalSearchPath, "SHOW search_path;")
+	// err := c.Tx.Get(&originalSearchPath, "SHOW search_path;")
 
-	if err != nil {
-		return err
-	}
+	// if err != nil {
+	// 	return err
+	// }
 
-	_, err = c.Tx.Exec(
-		fmt.Sprintf("SET search_path = %s;", a.SchemaName),
-	)
+	// _, err = c.Tx.Exec(
+	// 	fmt.Sprintf("SET search_path = %s;", a.SchemaName),
+	// )
 
-	if err != nil {
-		return err
-	}
+	// if err != nil {
+	// 	return err
+	// }
 
-	_, err = c.Tx.Exec(a.IndexDef)
+	// _, err = c.Tx.Exec(a.IndexDef)
 
-	if err != nil {
-		return err
-	}
+	// if err != nil {
+	// 	return err
+	// }
 
-	_, err = c.Tx.Exec(
-		fmt.Sprintf("SET search_path = %s;", originalSearchPath),
-	)
+	// _, err = c.Tx.Exec(
+	// 	fmt.Sprintf("SET search_path = %s;", originalSearchPath),
+	// )
 
-	return err
+	// return err
 }
 
 func (a *CreateIndex) Filter(targetExpression string) bool {
