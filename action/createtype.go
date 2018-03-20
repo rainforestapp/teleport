@@ -2,7 +2,6 @@ package action
 
 import (
 	"encoding/gob"
-	"fmt"
 )
 
 type CreateType struct {

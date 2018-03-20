@@ -2,8 +2,6 @@ package action
 
 import (
 	"encoding/gob"
-	"fmt"
-	"log"
 	// "strings"
 )
 
@@ -19,19 +17,20 @@ func init() {
 }
 
 func (a *CreateTable) Execute(c *Context) error {
-	cmd := fmt.Sprintf(
-		"CREATE TABLE IF NOT EXISTS \"%s\".\"%s\" (\"%s\" %s\"%s\"%s PRIMARY KEY);",
-		a.SchemaName,
-		a.TableName,
-		a.PrimaryKey.Name,
-		a.PrimaryKey.GetTypeSchemaStr(a.SchemaName),
-		a.PrimaryKey.Type,
-		a.PrimaryKey.DefaultStatement(),
-	)
-	_, err := c.Tx.Exec(cmd)
-	log.Println(cmd)
+	// cmd := fmt.Sprintf(
+	// 	"CREATE TABLE IF NOT EXISTS \"%s\".\"%s\" (\"%s\" %s\"%s\"%s PRIMARY KEY);",
+	// 	a.SchemaName,
+	// 	a.TableName,
+	// 	a.PrimaryKey.Name,
+	// 	a.PrimaryKey.GetTypeSchemaStr(a.SchemaName),
+	// 	a.PrimaryKey.Type,
+	// 	a.PrimaryKey.DefaultStatement(),
+	// )
+	// _, err := c.Tx.Exec(cmd)
+	// log.Println(cmd)
 
-	return err
+	// return err
+	return nil
 }
 
 func (a *CreateTable) Filter(targetExpression string) bool {
