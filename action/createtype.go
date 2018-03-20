@@ -21,7 +21,7 @@ func (a *CreateType) Execute(c *Context) error {
 		// Composite type
 		_, err := c.Tx.Exec(
 			fmt.Sprintf(
-				"CREATE TYPE \"%s\".\"%s\" AS ();",
+				"CREATE TYPE IF NOT EXISTS \"%s\".\"%s\" AS ();",
 				a.SchemaName,
 				a.TypeName,
 			),
@@ -32,7 +32,7 @@ func (a *CreateType) Execute(c *Context) error {
 		// Enum
 		_, err := c.Tx.Exec(
 			fmt.Sprintf(
-				"CREATE TYPE \"%s\".\"%s\" AS ENUM ();",
+				"CREATE TYPE IF NOT EXISTS \"%s\".\"%s\" AS ENUM ();",
 				a.SchemaName,
 				a.TypeName,
 			),

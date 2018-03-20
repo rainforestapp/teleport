@@ -20,7 +20,7 @@ func init() {
 
 func (a *CreateTable) Execute(c *Context) error {
 	cmd := fmt.Sprintf(
-		"CREATE TABLE \"%s\".\"%s\" (\"%s\" %s\"%s\"%s PRIMARY KEY);",
+		"CREATE TABLE IF NOT EXISTS \"%s\".\"%s\" (\"%s\" %s\"%s\"%s PRIMARY KEY);",
 		a.SchemaName,
 		a.TableName,
 		a.PrimaryKey.Name,
