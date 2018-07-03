@@ -1,4 +1,4 @@
-FROM golang:1.7
+FROM golang:1.10-stretch
 
 RUN mkdir -p /go/src/github.com/pagarme/teleport/
 WORKDIR /go/src/github.com/pagarme/teleport/
