@@ -2,6 +2,7 @@ package action
 
 import (
 	"encoding/json"
+	"time"
 )
 
 type Row struct {
@@ -27,6 +28,12 @@ func (r *Row) GetValue() interface{} {
 	// Convert back to string...
 	if bytea, ok := r.Value.([]byte); ok {
 		return string(bytea)
+	}
+
+	// time columns aren't valid with the default string representation
+	if r.Column.Type == "time" {
+		t := r.Value.(*time.Time)
+		return t.Format("15:04:05.000000000")
 	}
 
 	return r.Value
